@@ -153,3 +153,45 @@ elements to it:
             }
         }
     }
+
+Preassign fields
+================
+Via tsconfig it is also possible to set default values for the fields when calling.
+
+In this example, image_zoom is activated for the image element by default.
+
+.. code-block:: typoscript
+...
+image {
+   tt_content_defValues {
+      image_zoom = 1
+   }
+}
+
+For Flexform elements, the values are to be specified via XML.
+
+In this example, the display as a map is activated by default for tt_address.
+
+.. code-block:: typoscript
+tx_ttaddress_listview-address {
+    tt_content_defValues {
+        CType = list
+        list_type = ttaddress_listview
+        pi_flexform (
+			<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+			<T3FlexForms>
+				<data>
+					<sheet index="sDISPLAY">
+						<language index="lDEF">
+							<field index="settings.displayMode">
+						 		<value index="vDEF">
+						 			map
+						 		</value>
+						 	</field>
+						</language>
+					</sheet>
+				</data>
+			</T3FlexForms>
+		)
+    }
+}
